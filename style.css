@@ -50,16 +50,11 @@ li {
   cursor: default;
 }
 
-/* .completed .task-text {
-  animation: fadeTaskCompleted 0.5s forwards;
-} */
-
 .completed .task-text {
   color: gray;
   text-decoration: line-through;
 }
 
-/* animate ONLY the item that was just completed */
 .just-completed .task-text {
   animation: fadeTaskCompleted 0.5s forwards;
 }
