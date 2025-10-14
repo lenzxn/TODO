@@ -108,8 +108,8 @@ li {
 }
 
 .card {
-  opacity: 0; /* start invisible */
-  transform: translateY(-100px) scale(0.98); /* move up a bit & slightly smaller */
+  opacity: 0;
+  transform: translateY(-100px) scale(0.98);
 }
 
 .card > * {
