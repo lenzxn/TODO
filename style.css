@@ -1,25 +1,175 @@
-.h1 {
-  color: blue;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.completed {
+body {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0); /* soft pink → peach */
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+section {
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  box-sizing: border-box;
+  width: 40%;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: white;
+}
+
+section > * {
+  margin-top: 20px;
+}
+form button {
+  font-size: 20px;
+  width: 60px;
+}
+
+form button,
+form input {
+  height: 40px;
+  padding: 5px;
+}
+
+h1 {
+  font-size: 50px;
+  font-family: "Montserrat";
+}
+
+ul {
+  list-style: none;
+  padding-left: 20px;
+}
+li {
+  margin: 10px;
+  font-size: 30px;
+  cursor: default;
+}
+
+.completed .task-text {
   text-decoration: line-through;
   color: gray;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  font-size: large;
-}
-ul {
-  padding-left: 20px;
-}
-li {
-  cursor: default;
+.task-text:hover {
+  cursor: pointer;
+  text-decoration: line-through;
 }
 
 .trashcan {
   cursor: pointer;
   font-size: x-large;
   margin-left: 10px;
+}
+
+.input-row {
+  display: grid;
+  width: 300px;
+  margin-left: 130px;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+#taskInput {
+  font-size: 15px;
+}
+
+.error-msg {
+  display: block;
+  margin-top: 6px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #c52121;
+  min-height: 1.2em;
+}
+
+.shake {
+  animation: shakeAnim 0.5s linear;
+}
+
+.card {
+  opacity: 0; /* start invisible */
+  transform: translateY(-100px) scale(0.98); /* move up a bit & slightly smaller */
+}
+
+.card > * {
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.card.is-in {
+  animation: cardDrop 480ms cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+}
+
+.card.is-in > * {
+  animation: fadeInUp 1s ease forwards;
+}
+
+.card.is-in > *:nth-child(1) {
+  animation-delay: 0.78s;
+}
+.card.is-in > *:nth-child(2) {
+  animation-delay: 0.93s;
+}
+.card.is-in > *:nth-child(3) {
+  animation-delay: 1.08s;
+}
+.card.is-in > *:nth-child(4) {
+  animation-delay: 1.23s;
+}
+
+@keyframes shakeAnim {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes cardDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.98);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(50px) scale(0.99);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
