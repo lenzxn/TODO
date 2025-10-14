@@ -59,16 +59,6 @@ li {
   animation: fadeTaskCompleted 0.5s forwards;
 }
 
-@keyframes fadeTaskCompleted {
-  0% {
-    color: black;
-  }
-  100% {
-    color: gray;
-    text-decoration: line-through;
-  }
-}
-
 .task-text:hover {
   cursor: pointer;
   text-decoration: line-through;
@@ -183,5 +173,15 @@ li {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeTaskCompleted {
+  0% {
+    color: black;
+  }
+  100% {
+    color: gray;
+    text-decoration: line-through;
   }
 }
