@@ -50,9 +50,28 @@ li {
   cursor: default;
 }
 
+/* .completed .task-text {
+  animation: fadeTaskCompleted 0.5s forwards;
+} */
+
 .completed .task-text {
-  text-decoration: line-through;
   color: gray;
+  text-decoration: line-through;
+}
+
+/* animate ONLY the item that was just completed */
+.just-completed .task-text {
+  animation: fadeTaskCompleted 0.5s forwards;
+}
+
+@keyframes fadeTaskCompleted {
+  0% {
+    color: black;
+  }
+  100% {
+    color: gray;
+    text-decoration: line-through;
+  }
 }
 
 .task-text:hover {
@@ -81,15 +100,16 @@ li {
 
 .error-msg {
   display: block;
-  margin-top: 6px;
+  margin-top: 20px;
   text-align: center;
   font-size: 0.9rem;
+  font-style: italic;
   color: #c52121;
   min-height: 1.2em;
 }
 
 .shake {
-  animation: shakeAnim 0.5s linear;
+  animation: shakeAnim 1.5s forwards;
 }
 
 .card {
@@ -128,18 +148,15 @@ li {
 
 @keyframes shakeAnim {
   0% {
-    opacity: 0;
+    opacity: 1;
   }
   25% {
-    opacity: 1;
-  }
-  50% {
     opacity: 0;
   }
-  60% {
+  50% {
     opacity: 1;
   }
-  80% {
+  75% {
     opacity: 0;
   }
   100% {

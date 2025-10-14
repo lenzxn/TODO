@@ -1,5 +1,6 @@
 const tasks = [];
 
+let lastJustCompletedIndex = null;
 const form = document.getElementById("form");
 const input = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
@@ -68,13 +69,28 @@ function addTaskToList(task, i) {
   li.appendChild(trashCan);
 
   li.addEventListener("click", () => {
+    const becomingDone = !task.done;
     task.done = !task.done;
+    lastJustCompletedIndex = becomingDone ? i : null;
     display();
   });
 
   li.classList.add("fade-in");
 
   taskList.appendChild(li);
+  if (i === lastJustCompletedIndex) {
+    const textEl = li.querySelector(".task-text");
+    if (textEl) {
+      textEl.addEventListener(
+        "animationend",
+        () => {
+          li.classList.remove("just-completed");
+          lastJustCompletedIndex = null;
+        },
+        { once: true }
+      );
+    }
+  }
 
   const doneCount = tasks.filter((t) => t.done).length;
   p.textContent = doneCount + " " + "completed";
@@ -101,15 +117,31 @@ function display() {
     });
 
     if (task.done) li.classList.add("completed");
+    if (i === lastJustCompletedIndex) li.classList.add("just-completed");
 
     li.appendChild(trashCan);
 
     li.addEventListener("click", () => {
+      const becomingDone = !task.done;
       task.done = !task.done;
+      lastJustCompletedIndex = becomingDone ? i : null;
       display();
     });
 
     taskList.appendChild(li);
+    if (i === lastJustCompletedIndex) {
+      const textEl = li.querySelector(".task-text");
+      if (textEl) {
+        textEl.addEventListener(
+          "animationend",
+          () => {
+            li.classList.remove("just-completed");
+            lastJustCompletedIndex = null;
+          },
+          { once: true }
+        );
+      }
+    }
   });
 
   const doneCount = tasks.filter((t) => t.done).length;
